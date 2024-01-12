@@ -23,7 +23,7 @@ func createTable(db *gorm.DB) {
 }
 
 func insertDataInTable(db *gorm.DB) {
-	for i := 0; i < 1000; i++ {
+	for i := 0; i < 10; i++ {
 		db.Create(&TableTemplate{
 			Column1: i,
 			Column2: i,
