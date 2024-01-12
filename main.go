@@ -5,7 +5,6 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"time"
-	"unsafe"
 )
 
 func connectDB(dsn string) *gorm.DB {
@@ -69,12 +68,18 @@ type TableTemplate struct {
 }
 
 func main() {
-	var i int
-	fmt.Printf("Size of int: %d bytes\n", unsafe.Sizeof(i))
-	dbName := "testlocality1"
-	dsn := "root:1234@tcp(127.0.0.1:9999)/" + dbName + "?charset=utf8mb4&parseTime=True&loc=Local"
-	db := connectDB(dsn)
-	createTable(db)
-	insertDataInTable(db)
-	query1stAnd8thColumn(db)
+	port1 := "3307"
+	dsn1 := "root:1234@tcp(127.0.0.1:" + port1 + ")/testlocality?charset=utf8mb4&parseTime=True&loc=Local"
+	db1 := connectDB(dsn1)
+	createTable(db1)
+	insertDataInTable(db1)
+	query1stAnd8thColumn(db1)
+
+	port2 := "3308"
+	dsn2 := "root:1234@tcp(127.0.0.1:" + port2 + ")/testlocality?charset=utf8mb4&parseTime=True&loc=Local"
+	db2 := connectDB(dsn2)
+	createTable(db2)
+	insertDataInTable(db2)
+	query1stAnd9thColumn(db2)
+
 }
